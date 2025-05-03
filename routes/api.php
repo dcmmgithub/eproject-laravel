@@ -8,4 +8,5 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+Route::get('/songs/search', [SongsController::class, 'search']);
 Route::apiResource('/songs',SongsController::class);
