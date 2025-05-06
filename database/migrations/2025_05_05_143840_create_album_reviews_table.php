@@ -20,7 +20,7 @@ return new class extends Migration
         $table->tinyInteger('rating');
         $table->date('date');
         $table->foreignId('user_id')->constrained('users')->nullable();
-        $table->foreignId('album_id')->constrained('albums')->nullable();
+        $table->foreignId('album_id')->constrained('albums')->nullable(false);
         $table->timestamps();
     });
 }

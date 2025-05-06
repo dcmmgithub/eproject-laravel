@@ -13,7 +13,7 @@ class Songs extends Model
     }
     public function album(): BelongsTo
     {
-        return $this->belongsTo(Albums::class);
+        return $this->belongsTo(Album::class);
     }
     public function genre(): BelongsTo
     {

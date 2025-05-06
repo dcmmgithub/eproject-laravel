@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Albums;
+use App\Models\Album;
 use App\Http\Resources\AlbumResource;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        return response()->json(Albums::all());
+        return response()->json(Album::all());
     }
 
     /**
@@ -27,7 +27,7 @@ class AlbumController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Albums $album)
+    public function show(Album $album)
     {
         $album->load([
             'artist', // Artist of the album itself
@@ -42,7 +42,7 @@ class AlbumController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Albums $albums)
+    public function update(Request $request, Album $albums)
     {
         //
     }
@@ -50,7 +50,7 @@ class AlbumController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Albums $albums)
+    public function destroy(Album $albums)
     {
         //
     }
