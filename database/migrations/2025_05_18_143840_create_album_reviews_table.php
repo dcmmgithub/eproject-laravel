@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
 {
-    Schema::create('reviews', function (Blueprint $table) {
+    Schema::create('album_reviews', function (Blueprint $table) {
         $table->id();
         $table->string('name');
         $table->text('comment');
         $table->tinyInteger('rating');
         $table->date('date');
         $table->foreignId('user_id')->constrained('users')->nullable();
+        $table->foreignId('album_id')->constrained('albums')->nullable();
         $table->timestamps();
     });
 }
