@@ -3,7 +3,9 @@
 use App\Http\Controllers\SongsController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\AlbumReviewController;
+use App\Http\Controllers\ArtistReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +17,8 @@ Route::get('/songs/search', [SongsController::class, 'search']);
 Route::apiResource('/songs',SongsController::class);
 Route::apiResource('/genres',GenreController::class);
 Route::apiResource('/albums',AlbumController::class);
-Route::post('/albums/{album}/reviews', [AlbumReviewController::class, 'storeForAlbum']); // IMPORTANT: Protect this route
-Route::get('/albums/{album}/reviews', [AlbumReviewController::class, 'indexForAlbum']); // <-- ADD THIS
+Route::apiResource('/artists',ArtistController::class);
+Route::post('/albums/{album}/reviews', [AlbumReviewController::class, 'store']); // IMPORTANT: Protect this route
+Route::get('/albums/{album}/reviews', [AlbumReviewController::class, 'index']); // <-- ADD THIS
+Route::post('/artists/{artist}/reviews', [ArtistReviewController::class, 'store']); // IMPORTANT: Protect this route
+Route::get('/artists/{artist}/reviews', [ArtistReviewController::class, 'index']); // <-- ADD THIS

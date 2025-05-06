@@ -10,12 +10,13 @@ class Album extends Model
 {
     public function artist(): BelongsTo
     {
-        return $this->belongsTo(Artists::class);
+        return $this->belongsTo(Artist::class);
     }
     public function songs(): HasMany
     {
         return $this->hasMany(Songs::class, 'genre_id'); 
-    }public function reviews(): HasMany
+    }
+    public function reviews(): HasMany
     {
         return $this->hasMany(AlbumReview::class);
     }

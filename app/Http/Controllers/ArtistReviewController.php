@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AlbumReview;
-use App\Models\Album;
-use App\Http\Requests\StoreAlbumReviewRequest;
+use App\Models\ArtistReview;
+use App\Models\Artist;
+use App\Http\Requests\StoreArtistReviewRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
-class AlbumReviewController extends Controller
+class ArtistReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Album $album, Request $request): JsonResponse
+    public function index(Artist $artist, Request $request): JsonResponse
     {
         // Eager load the 'user' relationship for each review
         // Order by newest first, for example
-        $reviews = $album->reviews()->with('user')->latest()->get(); // Example pagination
+        $reviews = $artist->reviews()->with('user')->latest()->get(); // Example pagination
 
         return response()->json($reviews);
     }
 
-    public function store(StoreAlbumReviewRequest $request, Album $album): JsonResponse
+    public function store(StoreArtistReviewRequest $request, Artist $artist): JsonResponse
     {
         // Validation passed. Authorization check is removed from FormRequest.
 
@@ -34,7 +34,7 @@ class AlbumReviewController extends Controller
         $userId = Auth::check() ? Auth::id() : null;
 
         // Create the review using the relationship
-        $review = $album->reviews()->create([
+        $review = $artist->reviews()->create([
             'user_id' => $userId, // Will be null if user is not logged in
             'comment' => $validated['comment'],
             'rating' => $validated['rating'],
@@ -56,7 +56,7 @@ class AlbumReviewController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(AlbumReview $albumReview)
+    public function show(ArtistReview $artistReview)
     {
         //
     }
@@ -64,7 +64,7 @@ class AlbumReviewController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AlbumReview $albumReview)
+    public function update(Request $request, ArtistReview $artistReview)
     {
         //
     }
@@ -72,7 +72,7 @@ class AlbumReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AlbumReview $albumReview)
+    public function destroy(ArtistReview $artistReview)
     {
         //
     }

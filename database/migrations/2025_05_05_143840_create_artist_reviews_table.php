@@ -19,8 +19,8 @@ return new class extends Migration
         $table->text('comment');
         $table->tinyInteger('rating');
         $table->date('date');
-        $table->foreignId('user_id')->constrained('users')->nullable();
-        $table->foreignId('artist_id')->constrained('artists')->nullable(false);
+        $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+        $table->foreignId('artist_id')->constrained('artists')->nullable(false)->onDelete('cascade');
         $table->timestamps();
     });
 }
